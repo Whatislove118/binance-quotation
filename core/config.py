@@ -5,9 +5,9 @@ from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
-load_dotenv()
-
 from core.stream import Stream
+
+load_dotenv()
 
 
 @dataclass
@@ -32,10 +32,8 @@ class Config:
     def init_streams(cls, aggregator: str = "ticker") -> None:
         file_data = cls.init_config_data()
 
-        convert_name = lambda x: "".join(x.split("/")).lower()
-
         for key, data in file_data.items():
-            name = convert_name(key)
+            name = "".join(key.split("/")).lower()
             stream = Stream(
                 name=name,
                 value=data.get("price"),

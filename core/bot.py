@@ -1,5 +1,4 @@
 import asyncio
-from ast import operator
 
 from aiogram import Bot, Dispatcher, types
 
