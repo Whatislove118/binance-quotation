@@ -3,7 +3,9 @@ import logging
 
 import websockets
 
-from core.config import Config
+from .bot import send_message_to_users
+from .config import Config
+
 
 def subscribe_message() -> dict:
     return {
@@ -23,8 +25,10 @@ async def handler(websocket):
         if symbol := data.get("s"):
             stream = Config.STREAM_REGISTRY[symbol]
             is_triggered = stream.compare(float(data.get("c")))
-
-            logging.info(message + "" + str(is_triggered))
+            if is_triggered:
+                message = f"{symbol} is {stream.compare.__name__} than {stream.value}"
+                await send_message_to_users(message)
+            # logging.info(message + "" + str(is_triggered))
 
 
 async def consume(remote: str = Config.REMOTE_URL):

@@ -8,6 +8,8 @@ authors = ["whatislove118 <oleg.pochikalin@mail.ru>"]
 python = "^3.10"
 websockets = "^10.3"
 certifi = "^2021.10.8"
+aiogram = "^2.20"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"

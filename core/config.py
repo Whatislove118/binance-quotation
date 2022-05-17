@@ -3,6 +3,10 @@ import os
 import sys
 from dataclasses import dataclass
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from core.stream import Stream
 
 
@@ -14,6 +18,7 @@ class Config:
     REMOTE_URL = f"wss://{REMOTE_HOST}:{REMOTE_PORT}/ws"
     STREAM_REGISTRY = {}
     TELEGRAM_API_TOKEN = os.getenv("TELEGRAM_API_TOKEN", "token")
+    CHAT_SET = set()  # database mock
 
     @classmethod
     def init_config_data(cls, file_path: str = CONFIG_FILE_PATH) -> dict:
