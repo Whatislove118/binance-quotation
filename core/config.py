@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
-from core.stream import Stream
+from .stream import Stream
 
 load_dotenv()
 
