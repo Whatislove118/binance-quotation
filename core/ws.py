@@ -4,8 +4,6 @@ import logging
 import websockets
 
 from core.config import Config
-from core.stream import Stream
-
 
 def subscribe_message() -> dict:
     return {

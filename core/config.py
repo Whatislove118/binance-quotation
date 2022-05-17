@@ -15,15 +15,17 @@ class Config:
     STREAM_REGISTRY = {}
     TELEGRAM_API_TOKEN = os.getenv("TELEGRAM_API_TOKEN", "token")
 
-    def init_config_data(self, file_path: str = CONFIG_FILE_PATH) -> dict:
+    @classmethod
+    def init_config_data(cls, file_path: str = CONFIG_FILE_PATH) -> dict:
         try:
             with open(file_path) as json_file:
                 return json.load(json_file)
         except json.JSONDecodeError:
             sys.exit("ERROR: Bad JSON format")
 
-    def init_streams(self, aggregator: str = "ticker") -> None:
-        file_data = self.init_config_data()
+    @classmethod
+    def init_streams(cls, aggregator: str = "ticker") -> None:
+        file_data = cls.init_config_data()
 
         convert_name = lambda x: "".join(x.split("/")).lower()
 
@@ -35,4 +37,4 @@ class Config:
                 operation_type=data.get("trigger"),
                 aggregator="ticker",
             )
-            Config.STREAM_REGISTRY[name.upper()] = stream
+            cls.STREAM_REGISTRY[name.upper()] = stream
