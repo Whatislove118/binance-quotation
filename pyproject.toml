@@ -11,11 +11,24 @@ certifi = "^2021.10.8"
 aiogram = "^2.20"
 python-dotenv = "^0.20.0"
 
+
 [tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
 flake8 = "^4.0.1"
 black = "^22.3.0"
 isort = "^5.10.1"
 autoflake = "^1.4"
+mock = "^4.0.3"
+
+[tool.pytest.ini_options]
+addopts = "-v -s"
+testpaths = [
+    "tests",
+]
+pythonpath = [
+    "."
+]
+python_files = "tests.py test_*.py *_tests.py tests/test_*.py"
 
 [tool.black]
 exclude = '''
