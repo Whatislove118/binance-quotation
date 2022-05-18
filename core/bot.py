@@ -12,7 +12,7 @@ dispatcher = Dispatcher(bot)
 async def connect_user(message: types.Message):
     chat_id = message.chat.id
     if chat_id in Config.CHAT_SET:
-        await message.reply("You are already connected")
+        await message.reply("You are already connected.")
     Config.CHAT_SET.add(chat_id)
     await message.reply("Welcome in Binance Notifier app.")
 
@@ -21,7 +21,7 @@ async def connect_user(message: types.Message):
 async def disconnect_user(message: types.Message):
     chat_id = message.chat.id
     Config.CHAT_SET.discard(chat_id)
-    await message.reply("See you soon")
+    await message.reply("See you soon.")
 
 
 async def send_message(chat_id, message):

@@ -1,3 +1,6 @@
+import sys
+
+
 class OperationMixin:
     """
     Class for holding triggers realizations
@@ -24,8 +27,14 @@ class Stream(OperationMixin):
         name: str,
         aggregator: str = "aggTrade",
     ) -> None:
-        self.value = float(value)
-        self.compare = getattr(self, operation_type)
+        try:
+            self.value = float(value)
+        except ValueError:
+            sys.exit(f"{value} is not valid float.")
+        try:
+            self.compare = getattr(self, operation_type)
+        except AttributeError:
+            sys.exit(f"Unknown operator {operation_type}.")
         self.name = name
         self.aggregator = aggregator
 
